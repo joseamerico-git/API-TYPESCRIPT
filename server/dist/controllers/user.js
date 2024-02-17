@@ -58,10 +58,12 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             msg: `Password incorreta`
         });
     }
-    // Geramos um token
-    const token = jsonwebtoken_1.default.sign({
-        username: username
-    }, process.env.SECRET_KEY || 'secret123');
-    res.json(token);
+    else {
+        // Geramos um token
+        const token = jsonwebtoken_1.default.sign({
+            username: username
+        }, process.env.SECRET_KEY || 'secret123' /*,{expiresIn:'20000'}*/);
+        res.json(token);
+    }
 });
 exports.loginUser = loginUser;

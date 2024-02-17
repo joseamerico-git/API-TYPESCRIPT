@@ -64,14 +64,14 @@ export const loginUser = async (req:Request, res:Response) =>{
         return res.status(400).json({
             msg:`Password incorreta`
         })
-       }
+       } else{
        // Geramos um token
       const token = jwt.sign({
         username:username
 
-      },process.env.SECRET_KEY || 'secret123')
+      },process.env.SECRET_KEY || 'secret123'/*,{expiresIn:'20000'}*/)
      
       res.json(token);
     
-
+    }
 }
