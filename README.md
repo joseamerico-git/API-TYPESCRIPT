@@ -46,3 +46,5 @@ http://localhost:3001/api/user/login POST --> login.
 
 
 bcrypt --> npm i --save-dev @types/bcrypt
+
+npm i --save-dev @types/jsonwebtoken
