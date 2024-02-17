@@ -15,26 +15,53 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.newUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const users_1 = require("../models/users");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
-    console.log(username),
-        console.log(password);
+    //Validando usuário, se existe cadastrado
+    const user = yield users_1.User.findOne({ where: { username: username } });
+    if (user) {
+        return res.status(400).json({
+            msg: `Usuário com o nome ${username} já existe`
+        });
+    }
     const hashPassword = yield bcrypt_1.default.hash(password, 10);
-    yield users_1.User.create({
-        username: username,
-        password: password
-    });
-    res.json({
-        msg: `Usuário ${username} criado com sucesso!`
-    });
+    try {
+        yield users_1.User.create({
+            username: username,
+            password: hashPassword
+        });
+        res.json({
+            msg: `Usuário ${username} criado com sucesso!`
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: 'Ops ocorreu um erro! ' + error
+        });
+    }
 });
 exports.newUser = newUser;
-const loginUser = (req, res) => {
-    console.log(req.body);
-    const { body } = req;
-    res.json({
-        msg: 'Login usuário',
-        body
-    });
-};
+const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, password } = req.body;
+    // Validamos se usuário existe
+    const user = yield users_1.User.findOne({ where: { username: username } });
+    if (!user) {
+        return res.status(400).json({
+            msg: `Usuário com o nome ${username} não existe`
+        });
+    }
+    // Validamos password
+    const passwordValid = yield bcrypt_1.default.compare(password, user.password);
+    if (!passwordValid) {
+        return res.status(400).json({
+            msg: `Password incorreta`
+        });
+    }
+    // Geramos um token
+    const token = jsonwebtoken_1.default.sign({
+        username: username,
+    }, process.env.SECRET_KEY || 'secret123');
+    res.json(token);
+});
 exports.loginUser = loginUser;
