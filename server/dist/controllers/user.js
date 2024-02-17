@@ -60,7 +60,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     // Geramos um token
     const token = jsonwebtoken_1.default.sign({
-        username: username,
+        username: username
     }, process.env.SECRET_KEY || 'secret123');
     res.json(token);
 });
