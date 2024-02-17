@@ -1,12 +1,23 @@
 import {Request, Response} from 'express'
-
-export const newUser = (req:Request, res:Response) =>{
+import bcrypt from 'bcrypt'
+import { User } from '../models/users';
+export const newUser = async(req:Request, res:Response) =>{
     
-    const {body} = req;
+    const {username,password} = req.body;
+    console.log(username),
+    console.log(password)
+
+   const hashPassword = await bcrypt.hash(password,10)
+   
+   await User.create({
+        username:username,
+        password:password
+
+   })
 
     res.json({
-        msg:'Novo usuário',
-        body
+        msg:`Usuário ${username} criado com sucesso!`
+        
     })
 
 }

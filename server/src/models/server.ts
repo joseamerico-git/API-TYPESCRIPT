@@ -2,6 +2,9 @@ import express, {Application} from 'express';
 import routesProduto from '../routes/produto'
 import routesUser from '../routes/user'
 
+import { Produto } from './produtos';
+import { User } from './users';
+
 class Server{
     private app: Application;
     private port: string;
@@ -14,6 +17,7 @@ class Server{
         this.listen();
         this.midlewares();
         this.routes();
+        this.dbConnection();
     }
 
     listen(){
@@ -33,9 +37,12 @@ class Server{
 
     async dbConnection(){
         try {
+            Produto.sync();
+            User.sync();
+           
             
         } catch (error) {
-            console.log("Não houve conexão com o banco de dados!")
+            console.log("Não houve conexão com o banco de dados!", error)
         }
     }
 }

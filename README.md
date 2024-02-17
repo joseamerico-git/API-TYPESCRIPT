@@ -43,3 +43,6 @@ http://localhost:3001/api/products GET --> devolvemos todos os produtos.
 http://localhost:3001/api/user POST --> agregamos usuário.
 
 http://localhost:3001/api/user/login POST --> login.
+
+
+bcrypt --> npm i --save-dev @types/bcrypt

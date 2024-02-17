@@ -3,19 +3,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Produto = void 0;
+exports.User = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-exports.Produto = connection_1.default.define('produto', {
+exports.User = connection_1.default.define('user', {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nome: {
+    username: {
         type: sequelize_1.DataTypes.STRING,
+        unique: true,
+        allowNull: false
     },
-    descricao: {
+    password: {
         type: sequelize_1.DataTypes.STRING
     }
 });

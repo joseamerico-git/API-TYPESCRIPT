@@ -1,2 +1,19 @@
+import { DataTypes } from "sequelize"
 import sequelize  from "../db/connection"
-const Produto = sequelize.define('produto')
+export const Produto = sequelize.define('produto',{
+    id:{
+        type: DataTypes.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
+    },
+    nome:{
+        type: DataTypes.STRING,
+
+    },
+
+    descricao:{
+        type: DataTypes.STRING
+    }
+    
+
+})
