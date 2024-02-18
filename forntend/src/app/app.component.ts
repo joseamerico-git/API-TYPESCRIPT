@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./components/login/login.component";
 
 @Component({
@@ -7,11 +7,9 @@ import { LoginComponent } from "./components/login/login.component";
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, LoginComponent]
+    imports: [RouterOutlet, RouterLink, LoginComponent]
 })
 export class AppComponent {
   title = 'forntend';
-  constructor(private router: Router) {
-    // ...
-  }
+  
 }

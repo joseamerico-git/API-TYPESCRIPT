@@ -78,3 +78,14 @@ PS C:\WINDOWS\system32>
 
  Pesquisar flexbox
  [icones]("https://www.flaticon.com/br/icones")
+
+ Para configurar os endpoints
+
+ navegar para pasta envirorment 
+ adicionar 
+
+ Criar então os serviços 
+
+ ng g s services/user
+
+ Importar HttpClientModule em module.ts
