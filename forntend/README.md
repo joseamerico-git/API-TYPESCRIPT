@@ -89,3 +89,10 @@ PS C:\WINDOWS\system32>
  ng g s services/user
 
  Importar HttpClientModule em module.ts
+
+ Instalar o toastr
+ npm install ngx-toastr --save
+
+ npm install @angular/animations --save
+
+ adicionar em angular json em styles , "node_module/ngx-toastr/toastr.css"
