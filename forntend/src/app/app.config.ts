@@ -8,6 +8,12 @@ import { provideToastr } from 'ngx-toastr';
 
 
 export const appConfig: ApplicationConfig = {
+ 
   providers: [provideRouter(routes), provideAnimations(), // required animations providers
-  provideToastr(), RouterLink]
+  provideToastr({
+    timeOut:4000,
+    positionClass:'toast-bottom-right',
+    preventDuplicates:true,
+  }), RouterLink]
+  
 };

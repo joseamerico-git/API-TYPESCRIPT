@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [RouterLink,FormsModule,],
+  imports: [RouterLink,
+    FormsModule, ToastrModule
+    ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -17,7 +19,7 @@ export class SignInComponent implements OnInit{
   confirmPassword:string = '';
  
   constructor (private toastr: ToastrService) {
-
+    
   }
 
 
@@ -31,6 +33,14 @@ export class SignInComponent implements OnInit{
     if(this.username == '' || this.password == '' || this.confirmPassword ==''){
       this.toastr.error("Todos os campos devem ser preenchidos","Error")
       return;
+    }
+
+    // Validar se as passwords são iguais
+
+    if(this.password!= this.confirmPassword){
+      this.toastr.error("As senhas não estão iguais!")
+    }else{
+      this.toastr.success("As senhas estão ok!")
     }
 
   }
