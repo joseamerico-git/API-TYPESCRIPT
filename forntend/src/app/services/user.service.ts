@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private myAppUrl:string
-  private myApiUrl
+   myAppUrl:string;
+   myApiUrl:string;
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;

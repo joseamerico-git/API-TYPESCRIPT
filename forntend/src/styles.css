@@ -4,7 +4,7 @@ html,body{
 }
 
 .wrapper{
-    background-color: rgba(220, 92, 118, 0.367);
+    background-color: rgba(149, 137, 140, 0.93);
     display: flex;
     justify-content: center;
     align-items: center;

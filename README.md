@@ -53,3 +53,5 @@ Front-end
 # Instalando angular cli
 
 npm install -g @angular/cli
+
+npm i --save-dev @types/cors

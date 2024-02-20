@@ -1,9 +1,11 @@
 import express, {Application} from 'express';
+import cors from 'cors';
 import routesProduto from '../routes/produto'
 import routesUser from '../routes/user'
 
 import { Produto } from './produtos';
 import { User } from './users';
+
 
 class Server{
     private app: Application;
@@ -32,7 +34,14 @@ class Server{
     }
    
     midlewares(){
+
+        // Parseo body
+
         this.app.use(express.json());
+
+        // Cors
+        this.app.use(cors());
+
     }
 
     async dbConnection(){

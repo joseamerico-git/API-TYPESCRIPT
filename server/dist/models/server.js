@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const produto_1 = __importDefault(require("../routes/produto"));
 const user_1 = __importDefault(require("../routes/user"));
 const produtos_1 = require("./produtos");
@@ -37,7 +38,10 @@ class Server {
         this.app.use('/api/users', user_1.default);
     }
     midlewares() {
+        // Parseo body
         this.app.use(express_1.default.json());
+        // Cors
+        this.app.use((0, cors_1.default)());
     }
     dbConnection() {
         return __awaiter(this, void 0, void 0, function* () {

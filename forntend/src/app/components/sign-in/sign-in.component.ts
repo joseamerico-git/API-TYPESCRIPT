@@ -1,49 +1,81 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { User } from '../../interfaces/user';
+import { UserService } from '../../services/user.service';
+import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
   imports: [RouterLink,
-    FormsModule, ToastrModule
-    ],
+    FormsModule, ToastrModule, HttpClientModule, SpinnerComponent, CommonModule
+  ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
-export class SignInComponent implements OnInit{
-  username:string = '';
-  password:string = '';
-  confirmPassword:string = '';
- 
-  constructor (private toastr: ToastrService) {
-    
+export class SignInComponent implements OnInit {
+  username: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  loading: boolean = false;
+
+  constructor(private toastr: ToastrService, private _userSerice: UserService, private router: Router) {
+
   }
 
 
   ngOnInit(): void {
-   
+
   }
 
-  addUser(): void{
+  addUser(): void {
     // Validar se o usuário adicionou valores nos campos
 
-    if(this.username == '' || this.password == '' || this.confirmPassword ==''){
-      this.toastr.error("Todos os campos devem ser preenchidos","Error")
+    if (this.username == '' || this.password == '' || this.confirmPassword == '') {
+      this.toastr.error("Todos os campos devem ser preenchidos", "Error")
       return;
     }
 
     // Validar se as passwords são iguais
 
-    if(this.password!= this.confirmPassword){
+    if (this.password != this.confirmPassword) {
       this.toastr.error("As senhas não estão iguais!")
-    }else{
-      this.toastr.success("As senhas estão ok!")
+      return;
     }
 
+    //Criamos o objeto 
+
+    const user: User = {
+      username: this.username,
+      password: this.password
+    }
+    this.loading = true;
+    //this
+
+
+    this._userSerice.signIn(user).subscribe(data => {
+      this.loading = false;
+      this.toastr.success(`Usuário ${user.username} registrado com sucesso!","Usuário registrado!`);
+      this.router.navigate(['/login']);
+    }, (event: HttpErrorResponse) => {
+      this.loading = false;
+      if (event.error.msg) {
+        this.toastr.error(event.error.msg, 'Error');
+
+      } else {
+        this.toastr.error("Ops! ocorreu um erro comunique-se como o administrador!", 'Error');
+      }
+
+
+    })
+
   }
-  
+
 
 }

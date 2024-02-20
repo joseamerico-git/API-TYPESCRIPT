@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="body">
+    <div  *ngIf='!loading' class="body">
         <img class="logo" src="../../../assets/img/conecte-se.png"
             alt="img login">
         <h3>Registrar Usuário</h3>
@@ -25,6 +25,8 @@
 
                 </div>
                 <a routerLink="/login">Voltar</a>
+                <app-spinner *ngIf="loading"></app-spinner>
+             
 
             </div>
         </div>
