@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
-import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { CommonModule } from '@angular/common';
 
@@ -56,26 +56,32 @@ export class SignInComponent implements OnInit {
       password: this.password
     }
     this.loading = true;
-    //this
 
+    this._userSerice.signIn(user).subscribe({
+      next: (v) => {
+        this.loading = false;
+        this.toastr.success(`Usuário ${user.username} registrado com sucesso!","Usuário registrado!`);
+        this.router.navigate(['/login']);
+      },
+      error: (e: HttpErrorResponse) => {
 
-    this._userSerice.signIn(user).subscribe(data => {
-      this.loading = false;
-      this.toastr.success(`Usuário ${user.username} registrado com sucesso!","Usuário registrado!`);
-      this.router.navigate(['/login']);
-    }, (event: HttpErrorResponse) => {
-      this.loading = false;
-      if (event.error.msg) {
-        this.toastr.error(event.error.msg, 'Error');
-
-      } else {
-        this.toastr.error("Ops! ocorreu um erro comunique-se como o administrador!", 'Error');
-      }
-
-
+        this.loading = false;
+        this.msgError(e);
+       
+      },
+      complete: () => console.info('complete')
     })
-
   }
+  msgError(e:HttpErrorResponse){
+    if (e.error.msg) {
+      this.toastr.error(e.error.msg, 'Error');
+
+    } else {
+      this.toastr.error("Ops! ocorreu um erro comunique-se como o administrador!", 'Error');
+    }
+  }
+
+
 
 
 }
