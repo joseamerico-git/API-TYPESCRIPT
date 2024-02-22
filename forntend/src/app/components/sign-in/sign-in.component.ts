@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.service';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { CommonModule } from '@angular/common';
+import { ErrorService } from '../../services/error.service';
 
 
 
@@ -25,7 +26,7 @@ export class SignInComponent implements OnInit {
   confirmPassword: string = '';
   loading: boolean = false;
 
-  constructor(private toastr: ToastrService, private _userSerice: UserService, private router: Router) {
+  constructor(private toastr: ToastrService, private _userSerice: UserService, private router: Router,private _errorServicce:ErrorService) {
 
   }
 
@@ -66,21 +67,13 @@ export class SignInComponent implements OnInit {
       error: (e: HttpErrorResponse) => {
 
         this.loading = false;
-        this.msgError(e);
+        this._errorServicce.msgError(e);
        
       },
       complete: () => console.info('complete')
     })
   }
-  msgError(e:HttpErrorResponse){
-    if (e.error.msg) {
-      this.toastr.error(e.error.msg, 'Error');
-
-    } else {
-      this.toastr.error("Ops! ocorreu um erro comunique-se como o administrador!", 'Error');
-    }
-  }
-
+ 
 
 
 
