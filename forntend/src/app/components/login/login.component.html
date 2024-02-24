@@ -7,15 +7,15 @@
           <input type="text" [(ngModel)]="username"class="form-control" placeholder="Entrar com email">
         <label for="">User</label>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="password" class="form-control" placeholder="Entrar com password">
+            <input type="password" [(ngModel)]="password" class="form-control" placeholder="Entrar com password">
           <label for="">Password</label>  
             </div>
              <div class="d-grid gap-2">
                 <button type="button" class="btn btn-primary btn-lg" (click)="login()">Acessar</button> 
 
              </div>
-            <p class="mt-3">Não tem conta? <a routerLink="/signIn">Registrar</a></p>
-            <p class="mt-3">Não tem conta? <a routerLink="/recuperarSenha">Esqueci minha senha</a></p>
+            <p class="mt-3">Não tem conta? <a routerLink="/signIn">Cadastre-se</a></p>
+            <p class="mt-3"><a routerLink="/recuperarSenha">Esqueci minha senha</a></p>
            
       </div>
       <app-spinner *ngIf="loading"></app-spinner>

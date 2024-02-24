@@ -14,5 +14,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'forntend';
+
+   // http = inject(HttpClient);
+ //constructor(){
+  //this.http.get('http://localhost:4200/produtos').subscribe((res)=>{
+  //  console.log(res)
+ // })
+ //}
   
 }

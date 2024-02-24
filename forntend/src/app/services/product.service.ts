@@ -24,6 +24,8 @@ export class ProductService {
     //const token = localStorage.getItem('token');
    // const headers = new HttpHeaders().set('authorization',`Bearer ${token}`)
    // return this.http.get<Product[]>(`${this.myAppUrl}${this.myApiUrl}`,{headers:headers})
+   //const token = localStorage.getItem('token');
+  // const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`)
    return this.http.get<Product[]>(`${this.myAppUrl}${this.myApiUrl}`)
   }
 }

@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    localStorage.clear();
     //Validamos se usuário iforma dados
     if (this.username == '' || this.password == '') {
       this.toastr.error("Todos os campos são obrigatórios!", 'Error')
