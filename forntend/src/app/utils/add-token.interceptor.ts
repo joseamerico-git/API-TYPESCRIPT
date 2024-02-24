@@ -13,6 +13,6 @@ export const addTokenInterceptor: HttpInterceptorFn = (req, next) => {
      
     })
    
-   console.log(authReq)
+   
   return next(authReq);
 };
