@@ -96,3 +96,7 @@ PS C:\WINDOWS\system32>
  npm install @angular/animations --save
 
  adicionar em angular json em styles , "node_module/ngx-toastr/toastr.css"
+
+ Guard
+
+ ng g guard utils/auth
