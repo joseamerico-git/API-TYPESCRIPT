@@ -3,27 +3,31 @@
 <div class="container mt-2 text-center">
     <h2>Produtos</h2>
     
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Descrição</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Coca-Cola</td>
-            <td>Bebida com açucar</td>
-          </tr>
+    <ul>
+        <li *ngFor="let produto of listProdutos">{{ produto.descricao }}</li>
+      </ul>
 
-          <tr>
-            <td>Hineken</td>
-            <td>Cerveja puro malte</td>
-          </tr>
-         
-         
-        </tbody>
-      </table>
+      <h1 ></h1>
+
+   <table class="table">
+  <thead>
+    <tr>
+  
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th *ngFor="let produto of listProdutos">{{ produto}}</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      
+    </tr>
+    <tr>
+ 
+  </tbody>
+</table>
+     
 
 </div>

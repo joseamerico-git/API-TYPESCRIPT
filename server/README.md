@@ -55,3 +55,7 @@ Front-end
 npm install -g @angular/cli
 
 npm i --save-dev @types/cors
+
+npm i -g forever
+
+forever start app.js
