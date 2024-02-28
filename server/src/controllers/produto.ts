@@ -8,3 +8,11 @@ export const getProdutos = async (req: Request,res:Response) => {
     listProdutos
   })
 }
+
+export const getProdutosPublics = async (req: Request,res:Response) => {
+ 
+  const listProdutos = await Produto.findAll();
+  res.json({
+    listProdutos
+  })
+}

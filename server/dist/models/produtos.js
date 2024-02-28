@@ -17,5 +17,11 @@ exports.Produto = connection_1.default.define('produto', {
     },
     descricao: {
         type: sequelize_1.DataTypes.STRING
+    },
+    image: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    estoque: {
+        type: sequelize_1.DataTypes.INTEGER
     }
 });

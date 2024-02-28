@@ -13,7 +13,17 @@ export const Produto = sequelize.define('produto',{
 
     descricao:{
         type: DataTypes.STRING
+    },
+
+    image:{
+        type:DataTypes.STRING
+    },
+
+    
+    estoque:{
+        type: DataTypes.INTEGER
     }
+    
     
 
 })

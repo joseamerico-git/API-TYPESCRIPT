@@ -5,6 +5,7 @@ import routesUser from '../routes/user'
 
 import { Produto } from './produtos';
 import { User } from './users';
+import { getProdutosPublics } from '../controllers/produto';
 
 
 class Server{
@@ -30,6 +31,7 @@ class Server{
 
     routes(){
         this.app.use('/api/produtos',routesProduto)
+        this.app.use('/api/produtos/view',getProdutosPublics)
         this.app.use('/api/users',routesUser)
     }
    

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProdutos = void 0;
+exports.getProdutosPublics = exports.getProdutos = void 0;
 const produtos_1 = require("../models/produtos");
 const getProdutos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listProdutos = yield produtos_1.Produto.findAll();
@@ -18,3 +18,10 @@ const getProdutos = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     });
 });
 exports.getProdutos = getProdutos;
+const getProdutosPublics = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const listProdutos = yield produtos_1.Produto.findAll();
+    res.json({
+        listProdutos
+    });
+});
+exports.getProdutosPublics = getProdutosPublics;
